@@ -1,4 +1,4 @@
-package com.waterminn.collapsible_calendar
+package com.waterminn.smeem_expandable_calendar
 
 import org.junit.Test
 

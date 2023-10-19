@@ -1,4 +1,4 @@
-package com.waterminn.collapsible_calendar
+package com.waterminn.smeem_expandable_calendar
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

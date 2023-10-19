@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Collapsible-Calendar"
+rootProject.name = "Smeem-Expandable-Calendar"
 include(":app")
  

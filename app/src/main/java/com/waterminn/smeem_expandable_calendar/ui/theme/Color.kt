@@ -1,4 +1,4 @@
-package com.waterminn.collapsible_calendar.ui.theme
+package com.waterminn.smeem_expandable_calendar.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -1,0 +1,72 @@
+package com.waterminn.smeem_expandable_calendar.component
+
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.waterminn.smeem_expandable_calendar.datasource.monthlyDateList
+import com.waterminn.smeem_expandable_calendar.ui.theme.CollapsibleCalendarTheme
+import java.time.LocalDate
+import java.time.YearMonth
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+internal fun MonthlyCalendar(
+    dateList: Array<List<LocalDate>>,
+    selectedDate: LocalDate,
+    currentMonth: YearMonth,
+    loadDatesForMonth: (YearMonth) -> Unit,
+    onDayClick: (LocalDate) -> Unit
+) {
+    val itemWidth = (LocalConfiguration.current.screenWidthDp.dp - 38.dp) / 7
+    CalendarPager(
+        dateList = dateList,
+        loadNextDates = { loadDatesForMonth(currentMonth) },
+        loadPrevDates = { loadDatesForMonth(currentMonth.minusMonths(2)) }
+    ) { currentPage ->
+        FlowRow(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 16.dp, start = 19.dp, end = 19.dp, bottom = 10.dp),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            dateList[currentPage].forEachIndexed { index, date ->
+                Box(
+                    modifier = Modifier
+                        .width(itemWidth),
+                    contentAlignment = Alignment.Center
+                ) {
+                    DayItem(
+                        date = date,
+                        isSelected = selectedDate == date,
+                        onDayClick = { onDayClick(date) },
+                        weekDayLabel = index < 7
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true, widthDp = 400)
+@Composable
+fun MonthlyCalendarPreview() {
+    CollapsibleCalendarTheme {
+        MonthlyCalendar(
+            dateList = monthlyDateList,
+            selectedDate = LocalDate.now(),
+            currentMonth = YearMonth.now(),
+            loadDatesForMonth = {},
+            onDayClick = {}
+        )
+    }
+}
