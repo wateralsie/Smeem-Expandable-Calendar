@@ -23,12 +23,12 @@ internal fun CalendarPager(
         initialPage = 1,
         initialPageOffsetFraction = 0f
     ) { /*page count*/ 3 }
-    LaunchedEffect(pagerState.currentPage) {
-        if (pagerState.currentPage == 2) {
+    LaunchedEffect(pagerState.settledPage) {
+        if (pagerState.settledPage == 2) {
             loadNextDates(dateList[1][0])
             pagerState.scrollToPage(1)
         }
-        if (pagerState.currentPage == 0 && isInitialized.value) {
+        if (pagerState.settledPage == 0 && isInitialized.value) {
             loadPrevDates(dateList[0][0])
             pagerState.scrollToPage(1)
         }
