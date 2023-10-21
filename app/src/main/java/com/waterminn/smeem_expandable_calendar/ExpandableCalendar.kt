@@ -12,6 +12,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.waterminn.smeem_expandable_calendar.component.CalendarToggleButton
 import com.waterminn.smeem_expandable_calendar.component.MonthTitle
 import com.waterminn.smeem_expandable_calendar.component.MonthlyCalendar
+import com.waterminn.smeem_expandable_calendar.component.WeekLabel
 import com.waterminn.smeem_expandable_calendar.component.WeeklyCalendar
 import com.waterminn.smeem_expandable_calendar.core.CalendarIntent
 import com.waterminn.smeem_expandable_calendar.core.Period
@@ -56,6 +57,7 @@ private fun ExpandableCalendar(
             selectedMonth = currentMonth,
             modifier = Modifier.padding(vertical = 18.dp)
         )
+        WeekLabel()
         if (isCalendarExpanded) {
             MonthlyCalendar(
                 dateList = dateList,

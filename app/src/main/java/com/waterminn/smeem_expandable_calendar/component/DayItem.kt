@@ -23,13 +23,12 @@ import androidx.compose.ui.unit.sp
 import com.waterminn.smeem_expandable_calendar.ui.theme.CollapsibleCalendarTheme
 import com.waterminn.smeem_expandable_calendar.ui.theme.gray400
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 
 /**
  * view that represent one day in a calendar
  * @param date: date that view should represent
- * @param weekDayLabel: flag that indicates if name of week day should be visible above day value
+ * @param isFirstWeek: flag that indicates if name of week day should be visible above day value
  * */
 @Composable
 fun DayItem(
@@ -38,7 +37,7 @@ fun DayItem(
     modifier: Modifier = Modifier,
     isSelected: Boolean = false,
     isDiaryWritten: Boolean = true,
-    weekDayLabel: Boolean = true,
+    isFirstWeek: Boolean = true,
 ) {
     val isToday = date == LocalDate.now()
     Column(
@@ -47,17 +46,10 @@ fun DayItem(
         modifier = Modifier
             .padding(horizontal = 5.dp)
             .padding(
-                top = if (weekDayLabel) 0.dp else 14.dp,
+                top = if (isFirstWeek) 0.dp else 14.dp,
                 bottom = 14.dp
             )
     ) {
-        if (weekDayLabel) {
-            Text(
-                text = date.format(DateTimeFormatter.ofPattern("E")).first().toString(),
-                style = MaterialTheme.typography.labelMedium,
-                modifier = Modifier.padding(bottom = 7.dp)
-            )
-        }
         Card(
             shape = RoundedCornerShape(6.dp),
             colors = CardDefaults.cardColors(
@@ -66,7 +58,6 @@ fun DayItem(
                     else -> MaterialTheme.colorScheme.background
                 },
             ),
-            // TODO: set width depending on screen size
             modifier = modifier
                 .border(
                     width = 1.dp,
@@ -104,7 +95,7 @@ fun DayItemPreview() {
             onDayClick = {},
             isSelected = false,
             isDiaryWritten = false,
-            weekDayLabel = true,
+            isFirstWeek = true,
             modifier = Modifier.widthIn(max = 36.dp)
         )
     }

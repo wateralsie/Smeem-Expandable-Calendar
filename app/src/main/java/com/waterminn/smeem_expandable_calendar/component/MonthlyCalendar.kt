@@ -36,7 +36,7 @@ internal fun MonthlyCalendar(
         FlowRow(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 16.dp, start = 18.dp, end = 18.dp, bottom = 10.dp),
+                .padding(start = 18.dp, end = 18.dp, bottom = 10.dp),
             horizontalArrangement = Arrangement.Center
         ) {
             dateList[currentPage].forEachIndexed { index, date ->
@@ -49,7 +49,7 @@ internal fun MonthlyCalendar(
                         date = date,
                         isSelected = selectedDate == date,
                         onDayClick = { onDayClick(date) },
-                        weekDayLabel = index < 7
+                        isFirstWeek = index < 7
                     )
                 }
             }
