@@ -57,6 +57,11 @@ internal fun MonthlyCalendar(
     }
 }
 
+fun printDate(lists: Array<List<LocalDate>>) =
+    lists.joinToString(separator = "\n") { list ->
+        list.joinToString(separator = " ")
+    }
+
 @Preview(showBackground = true, widthDp = 400)
 @Composable
 fun MonthlyCalendarPreview() {
