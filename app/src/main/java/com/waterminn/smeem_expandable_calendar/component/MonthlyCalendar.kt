@@ -36,7 +36,7 @@ internal fun MonthlyCalendar(
         FlowRow(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 16.dp, start = 19.dp, end = 19.dp, bottom = 10.dp),
+                .padding(top = 16.dp, start = 18.dp, end = 18.dp, bottom = 10.dp),
             horizontalArrangement = Arrangement.Center
         ) {
             dateList[currentPage].forEachIndexed { index, date ->

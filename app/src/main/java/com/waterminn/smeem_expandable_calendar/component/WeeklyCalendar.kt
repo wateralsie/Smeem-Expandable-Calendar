@@ -33,7 +33,7 @@ internal fun WeeklyCalendar(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 16.dp, start = 19.dp, end = 19.dp),
+                .padding(top = 16.dp, start = 18.dp, end = 18.dp),
             horizontalArrangement = Arrangement.Center
         ) {
             dateList[currentPage].forEach { date ->
