@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -36,6 +37,7 @@ fun DayItem(
     onDayClick: (LocalDate) -> Unit,
     modifier: Modifier = Modifier,
     isSelected: Boolean = false,
+    isCurrentMonth: Boolean = true,
     isDiaryWritten: Boolean = true,
     isFirstWeek: Boolean = true,
 ) {
@@ -65,7 +67,11 @@ fun DayItem(
                     shape = RoundedCornerShape(6.dp)
                 )
                 .aspectRatio(1f)
-                .clickable { onDayClick(date) }
+                .alpha(if (!isCurrentMonth) 0f else 1f)
+                .clickable(
+                    enabled = isCurrentMonth,
+                    onClick = { onDayClick(date) }
+                )
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -94,6 +100,7 @@ fun DayItemPreview() {
             date = LocalDate.now().plusDays(0),
             onDayClick = {},
             isSelected = false,
+            isCurrentMonth = true,
             isDiaryWritten = false,
             isFirstWeek = true,
             modifier = Modifier.widthIn(max = 36.dp)

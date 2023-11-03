@@ -14,6 +14,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.waterminn.smeem_expandable_calendar.datasource.monthlyDateList
+import com.waterminn.smeem_expandable_calendar.model.Date
 import com.waterminn.smeem_expandable_calendar.ui.theme.CollapsibleCalendarTheme
 import java.time.LocalDate
 import java.time.YearMonth
@@ -21,7 +22,7 @@ import java.time.YearMonth
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 internal fun MonthlyCalendar(
-    dateList: Array<List<LocalDate>>,
+    dateList: Array<List<Date>>,
     selectedDate: LocalDate,
     currentMonth: YearMonth,
     loadDatesForMonth: (YearMonth) -> Unit,
@@ -46,9 +47,11 @@ internal fun MonthlyCalendar(
                     contentAlignment = Alignment.Center
                 ) {
                     DayItem(
-                        date = date,
-                        isSelected = selectedDate == date,
-                        onDayClick = { onDayClick(date) },
+                        date = date.day,
+                        isSelected = selectedDate == date.day,
+                        isCurrentMonth = date.isCurrentMonth,
+                        isDiaryWritten = date.isDiaryWritten,
+                        onDayClick = { onDayClick(date.day) },
                         isFirstWeek = index < 7
                     )
                 }
@@ -57,16 +60,16 @@ internal fun MonthlyCalendar(
     }
 }
 
-@Preview(showBackground = true, widthDp = 400)
-@Composable
-fun MonthlyCalendarPreview() {
-    CollapsibleCalendarTheme {
-        MonthlyCalendar(
-            dateList = monthlyDateList,
-            selectedDate = LocalDate.now(),
-            currentMonth = YearMonth.now(),
-            loadDatesForMonth = {},
-            onDayClick = {}
-        )
-    }
-}
+//@Preview(showBackground = true, widthDp = 400)
+//@Composable
+//fun MonthlyCalendarPreview() {
+//    CollapsibleCalendarTheme {
+//        MonthlyCalendar(
+//            dateList = monthlyDateList,
+//            selectedDate = LocalDate.now(),
+//            currentMonth = YearMonth.now(),
+//            loadDatesForMonth = {},
+//            onDayClick = {}
+//        )
+//    }
+//}

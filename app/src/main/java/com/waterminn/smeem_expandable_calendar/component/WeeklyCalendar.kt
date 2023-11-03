@@ -13,12 +13,13 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.waterminn.smeem_expandable_calendar.datasource.weeklyDateList
+import com.waterminn.smeem_expandable_calendar.model.Date
 import com.waterminn.smeem_expandable_calendar.ui.theme.CollapsibleCalendarTheme
 import java.time.LocalDate
 
 @Composable
 internal fun WeeklyCalendar(
-    dateList: Array<List<LocalDate>>,
+    dateList: Array<List<Date>>,
     selectedDate: LocalDate,
     loadNextWeek: (nextWeekDate: LocalDate) -> Unit,
     loadPrevWeek: (endWeekDate: LocalDate) -> Unit,
@@ -43,9 +44,10 @@ internal fun WeeklyCalendar(
                     contentAlignment = Alignment.Center
                 ) {
                     DayItem(
-                        date = date,
+                        date = date.day,
                         onDayClick = onDayClick,
-                        isSelected = selectedDate == date
+                        isSelected = selectedDate == date.day,
+                        isDiaryWritten = date.isDiaryWritten
                     )
                 }
             }
@@ -53,16 +55,16 @@ internal fun WeeklyCalendar(
     }
 }
 
-@Preview(showBackground = true, widthDp = 400)
-@Composable
-fun WeeklyCalendarPreview() {
-    CollapsibleCalendarTheme {
-        WeeklyCalendar(
-            dateList = weeklyDateList,
-            selectedDate = LocalDate.now(),
-            loadNextWeek = {},
-            loadPrevWeek = {},
-            onDayClick = {}
-        )
-    }
-}
+//@Preview(showBackground = true, widthDp = 400)
+//@Composable
+//fun WeeklyCalendarPreview() {
+//    CollapsibleCalendarTheme {
+//        WeeklyCalendar(
+//            dateList = weeklyDateList,
+//            selectedDate = LocalDate.now(),
+//            loadNextWeek = {},
+//            loadPrevWeek = {},
+//            onDayClick = {}
+//        )
+//    }
+//}

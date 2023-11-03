@@ -52,6 +52,7 @@ internal fun LocalDate.getRemainingDatesInWeek(start: DayOfWeek = DayOfWeek.SUND
 
 /**
  * @return list of dates remaining in the month
+ * this doesn't show in monthly calendar
  * */
 internal fun LocalDate.getRemainingDatesInMonth(): List<LocalDate> {
     val dates = mutableListOf<LocalDate>()

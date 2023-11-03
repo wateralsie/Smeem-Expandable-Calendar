@@ -16,6 +16,7 @@ import com.waterminn.smeem_expandable_calendar.component.WeekLabel
 import com.waterminn.smeem_expandable_calendar.component.WeeklyCalendar
 import com.waterminn.smeem_expandable_calendar.core.CalendarIntent
 import com.waterminn.smeem_expandable_calendar.core.Period
+import com.waterminn.smeem_expandable_calendar.model.Date
 import com.waterminn.smeem_expandable_calendar.util.getWeekStartDate
 import java.time.LocalDate
 import java.time.YearMonth
@@ -42,7 +43,7 @@ fun ExpandableCalendar(
 
 @Composable
 private fun ExpandableCalendar(
-    dateList: Array<List<LocalDate>>,
+    dateList: Array<List<Date>>,
     selectedDate: LocalDate,
     currentMonth: YearMonth,
     onIntent: (CalendarIntent) -> Unit,
