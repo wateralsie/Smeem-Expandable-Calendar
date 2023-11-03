@@ -48,7 +48,7 @@ internal fun MonthlyCalendar(
                 ) {
                     DayItem(
                         date = date.day,
-                        isSelected = selectedDate == date.day,
+                        isSelected = date.isCurrentMonth && selectedDate == date.day,
                         isCurrentMonth = date.isCurrentMonth,
                         isDiaryWritten = date.isDiaryWritten,
                         onDayClick = { onDayClick(date.day) },
