@@ -40,6 +40,7 @@ fun DayItem(
     isCurrentMonth: Boolean = true,
     isDiaryWritten: Boolean = true,
     isFirstWeek: Boolean = true,
+    isSixWeeks: Boolean = false,
 ) {
     val isToday = date == LocalDate.now()
     Column(
@@ -48,8 +49,15 @@ fun DayItem(
         modifier = Modifier
             .padding(horizontal = 5.dp)
             .padding(
-                top = if (isFirstWeek) 0.dp else 14.dp,
-                bottom = 14.dp
+                top = when {
+                    isFirstWeek -> 0.dp
+                    isSixWeeks -> 6.8.dp
+                    else -> 14.dp
+                },
+                bottom = when {
+                    isSixWeeks -> 6.8.dp
+                    else -> 14.dp
+                }
             )
     ) {
         Card(

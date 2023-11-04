@@ -52,7 +52,8 @@ internal fun MonthlyCalendar(
                         isCurrentMonth = date.isCurrentMonth,
                         isDiaryWritten = date.isDiaryWritten,
                         onDayClick = { onDayClick(date.day) },
-                        isFirstWeek = index < 7
+                        isFirstWeek = index < 7,
+                        isSixWeeks = dateList[currentPage].size > 35
                     )
                 }
             }
