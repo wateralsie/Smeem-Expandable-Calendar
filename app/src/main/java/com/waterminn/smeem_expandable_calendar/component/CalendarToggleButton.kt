@@ -1,12 +1,16 @@
 package com.waterminn.smeem_expandable_calendar.component
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconToggleButton
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.gestures.detectDragGestures
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.unit.dp
+import com.waterminn.smeem_expandable_calendar.ui.theme.gray100
 
 @Composable
 fun CalendarToggleButton(
@@ -14,13 +18,30 @@ fun CalendarToggleButton(
     expand: () -> Unit,
     collapse: () -> Unit
 ) {
-    IconToggleButton(
-        checked = isExpanded,
-        onCheckedChange = { isChecked -> if (isChecked) expand() else collapse() }
-    ) {
-        when {
-            isExpanded -> Icon(imageVector = Icons.Default.KeyboardArrowUp, contentDescription = "collapse calendar", tint = MaterialTheme.colorScheme.onBackground)
-            else -> Icon(imageVector = Icons.Default.KeyboardArrowDown, contentDescription = "expand calendar", tint = MaterialTheme.colorScheme.onBackground)
-        }
+    Column {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(
+                    min = when {
+                        isExpanded -> 42.dp
+                        else -> 20.dp
+                    }
+                )
+                .pointerInput(Unit) {
+                    detectDragGestures { change, dragAmount ->
+                        change.consume()
+                        if (dragAmount.y < 0) {
+                            collapse()
+                        } else if (dragAmount.y > 0) {
+                            expand()
+                        }
+                    }
+                }
+        )
+        Divider(
+            color = gray100,
+            thickness = 4.dp
+        )
     }
 }
