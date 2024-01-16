@@ -1,6 +1,5 @@
 package com.waterminn.smeem_expandable_calendar.component
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -28,7 +27,15 @@ fun WeekLabel(
     ) {
         val weekLabelArray = when (start) {
             DayOfWeek.MONDAY -> DayOfWeek.values()
-            else -> arrayOf(DayOfWeek.SUNDAY, DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY, DayOfWeek.SATURDAY)
+            else -> arrayOf(
+                DayOfWeek.SUNDAY,
+                DayOfWeek.MONDAY,
+                DayOfWeek.TUESDAY,
+                DayOfWeek.WEDNESDAY,
+                DayOfWeek.THURSDAY,
+                DayOfWeek.FRIDAY,
+                DayOfWeek.SATURDAY
+            )
         }
         val weekInitials = weekLabelArray.map { it.name.first().toString() }.toTypedArray()
 

@@ -51,13 +51,18 @@ fun DayItem(
             .padding(
                 top = when {
                     isFirstWeek -> 0.dp
-                    isSixWeeks -> 6.8.dp
-                    else -> 14.dp
-                },
-                bottom = when {
-                    isSixWeeks -> 6.8.dp
-                    else -> 14.dp
+                    isSixWeeks -> 13.6.dp
+                    else -> 28.dp
                 }
+//                top = when {
+//                    isFirstWeek -> 0.dp
+//                    isSixWeeks -> 6.8.dp
+//                    else -> 14.dp
+//                },
+//                bottom = when {
+//                    isSixWeeks -> 6.8.dp
+//                    else -> 14.dp
+//                }
             )
     ) {
         Card(

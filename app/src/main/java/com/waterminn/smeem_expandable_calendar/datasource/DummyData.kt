@@ -1,5 +1,6 @@
 package com.waterminn.smeem_expandable_calendar.datasource
 
+import com.waterminn.smeem_expandable_calendar.model.Date
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -41,6 +42,16 @@ val weeklyDateList = arrayOf(
         LocalDate.parse("2023-10-28", DateTimeFormatter.ofPattern("yyyy-MM-dd")),
     )
 )
+
+val weeklyDateArray: Array<List<Date>> = weeklyDateList.map { week ->
+    week.map { date ->
+        Date(
+            day = date,
+            isCurrentMonth = true,
+            isDiaryWritten = false
+        )
+    }
+}.toTypedArray()
 
 val monthlyDateList = arrayOf(
     listOf(
